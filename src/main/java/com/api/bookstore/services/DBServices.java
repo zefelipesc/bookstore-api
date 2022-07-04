@@ -12,7 +12,7 @@ import com.api.bookstore.repositories.CategoryRepository;
 
 @Service
 public class DBServices {
-    // The layer that makes data persistence is th repository layer, so we have to add here using @Autowired notation.
+    // The layer that makes data persistence is the repository layer, so we have to add here using @Autowired notation.
     @Autowired
     private CategoryRepository categoryRepository;
 

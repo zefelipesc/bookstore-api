@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.api.bookstore.domain.Category;
 
-@Repository
+@Repository // Layer that makes data access
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }

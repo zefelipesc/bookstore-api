@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Book implements Serializable {
     private static final Long serialVersionUID = 1L;
@@ -21,6 +23,7 @@ public class Book implements Serializable {
     private String author_name;
     private String text;
 
+    @JsonIgnore // it ignores the category, we'll see just the "book", - protection about serialization.
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
