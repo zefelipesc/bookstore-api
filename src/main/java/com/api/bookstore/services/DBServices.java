@@ -21,10 +21,10 @@ public class DBServices {
 
     //
     public void instantiateDataBase(){
-        Category category1 = new Category(0, "Development", "Books about programming");
-        Category category2 = new Category(0, "SCI-FI", "Books about Science fiction");
-        Category category3 = new Category(0, "Fantasy", "Books about mythical creatures");
-        Category category4 = new Category(0, "Romance", "Books about lovers");
+        Category category1 = new Category(null, "Development", "Books about programming");
+        Category category2 = new Category(null, "SCI-FI", "Books about Science fiction");
+        Category category3 = new Category(null, "Fantasy", "Books about mythical creatures");
+        Category category4 = new Category(null, "Romance", "Books about lovers");
 
         Book book1 = new Book(0, "Clean code", "Robert Martin", "Lorem ipsum", category1);
         Book book2 = new Book(0, "War of the Worlds", "George Orwell", "Lorem ipsum", category1);

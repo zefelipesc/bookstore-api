@@ -1,5 +1,6 @@
 package com.api.bookstore.Controllers;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.api.bookstore.domain.Category;
 import com.api.bookstore.dtos.CategoryDTO;
@@ -32,5 +36,14 @@ public class CategoryController {
         List<Category> categoryList = categoryService.findAll();
         List<CategoryDTO> categoryDTOList = categoryList.stream().map(obj -> new CategoryDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(categoryDTOList);
+    }
+
+    @PostMapping
+    public ResponseEntity<Category> create(@RequestBody Category obj) {
+        obj = categoryService.create(obj);
+        // Quando a gente cria uma classe aqui no backend, por questão de boas práticas, devemos retornar para o usuário uma URI de acesso
+        // pra nova classe criada(novo obj), por isso criamos uma  URI.
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }
