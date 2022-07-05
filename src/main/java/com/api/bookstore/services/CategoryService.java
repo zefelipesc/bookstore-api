@@ -1,5 +1,6 @@
 package com.api.bookstore.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ public class CategoryService {
 
     public Category findById(Integer id) {
         Optional<Category> obj = categoryRepository.findById(id); // use Optional because we can ou not find the object.
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Object with Id: " + id + " and type: " + Category.class.getName() + " not found"));
+        return obj.orElseThrow(() ->
+                new ObjectNotFoundException("Object with Id: " + id + " and type: " + Category.class.getName() + " not found"));
+    }
+
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
     }
 }
