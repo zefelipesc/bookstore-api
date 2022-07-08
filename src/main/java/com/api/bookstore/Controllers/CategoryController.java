@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,8 +43,14 @@ public class CategoryController {
     public ResponseEntity<Category> create(@RequestBody Category obj) {
         obj = categoryService.create(obj);
         // Quando a gente cria uma classe aqui no backend, por questão de boas práticas, devemos retornar para o usuário uma URI de acesso
-        // pra nova classe criada(novo obj), por isso criamos uma  URI.
+        // pra nova classe criada(novo obj), por isso criamos uma URI.
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable Integer id, @RequestBody CategoryDTO objDto){
+        Category newObjt = categoryService.update(id, objDto);
+        return ResponseEntity.ok().body(new CategoryDTO(newObjt));
     }
 }
