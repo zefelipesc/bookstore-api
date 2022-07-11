@@ -30,7 +30,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @CrossOrigin(origins = "http://localhost:4200/")
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public ResponseEntity<Category> findById(@PathVariable Integer id) {
         Category obj = categoryService.findById(id);
