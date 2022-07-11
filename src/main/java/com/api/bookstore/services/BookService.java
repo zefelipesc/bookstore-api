@@ -1,0 +1,24 @@
+package com.api.bookstore.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.api.bookstore.domain.Book;
+import com.api.bookstore.domain.Category;
+import com.api.bookstore.exceptions.ObjectNotFoundException;
+import com.api.bookstore.repositories.BookRepository;
+
+@Service
+public class BookService {
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    public Book findById(Integer id) {
+        Optional<Book> obj = bookRepository.findById(id);
+        return obj.orElseThrow(() ->
+                new ObjectNotFoundException("Object with Id: " + id + " and type: " + Category.class.getName() + " not found"));
+    }
+}
