@@ -27,11 +27,15 @@ public class DBServices {
         Category category4 = new Category(null, "Romance", "Books about lovers");
 
         Book book1 = new Book(0, "Clean code", "Robert Martin", "Lorem ipsum", category1);
-        Book book2 = new Book(0, "War of the Worlds", "George Orwell", "Lorem ipsum", category1);
-        Book book3 = new Book(0, "Lord of the Rings", "JRR Tolkien", "Lorem ipsum", category1);
-        Book book4 = new Book(0, "Jane Eyre", "Emma Bronte", "Lorem ipsum", category1);
+        Book book2 = new Book(0, "Java 8 in Action", "Raoul Gabriel", "Lorem ipsum", category1);
+        Book book3 = new Book(0, "War of the Worlds", "George Orwell", "Lorem ipsum", category2);
+        Book book4 = new Book(0, "Lord of the Rings", "JRR Tolkien", "Lorem ipsum", category3);
+        Book book5 = new Book(0, "Jane Eyre", "Emma Bronte", "Lorem ipsum", category4);
 
-        category1.getBooks().addAll(Arrays.asList(book1, book2, book3, book4));
+        category1.getBooks().addAll(Arrays.asList(book1, book2));
+        category2.getBooks().addAll(Arrays.asList(book3));
+        category3.getBooks().addAll(Arrays.asList(book4));
+        category4.getBooks().addAll(Arrays.asList(book5));
 
         // Saving in database
         this.categoryRepository.saveAll(Arrays.asList(category1, category2, category3, category4));
