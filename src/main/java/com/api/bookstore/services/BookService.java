@@ -42,4 +42,11 @@ public class BookService {
         newObj.setAuthor_name(obj.getAuthor_name());
         newObj.setText(obj.getText());
     }
+
+    public Book create(Integer id_cat, Book obj) {
+        obj.setId(null);
+        Category category = categoryService.findById(id_cat);
+        obj.setCategory(category);
+        return bookRepository.save(obj);
+    }
 }
