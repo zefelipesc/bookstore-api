@@ -28,7 +28,7 @@ public class BookService {
 
     public List<Book> findAll(Integer id_cat) {
         categoryService.findById(id_cat);
-        return  bookRepository.findAllByCategory(id_cat);
+        return bookRepository.findAllByCategory(id_cat);
     }
 
     public Book update(Integer id, Book obj) {

@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -22,6 +25,7 @@ import com.api.bookstore.domain.Book;
 import com.api.bookstore.dtos.BookDTO;
 import com.api.bookstore.services.BookService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/books")
 public class BookController {
@@ -36,7 +40,7 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BookDTO>> findAll(@RequestParam(value = "category", defaultValue = "0") Integer id_cat) {
+    public ResponseEntity<List<BookDTO>> findAll(@RequestParam(value = "category", defaultValue = "1") Integer id_cat) {
         List<Book> bookList = bookService.findAll(id_cat);
         List<BookDTO> bookDTOList = bookList.stream().map(obj -> new BookDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(bookDTOList);

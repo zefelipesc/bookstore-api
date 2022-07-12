@@ -23,6 +23,7 @@ import com.api.bookstore.domain.Category;
 import com.api.bookstore.dtos.CategoryDTO;
 import com.api.bookstore.services.CategoryService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/categories") // localhost:8080/categories/1
 public class CategoryController {
@@ -30,7 +31,6 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public ResponseEntity<Category> findById(@PathVariable Integer id) {
         Category obj = categoryService.findById(id);
